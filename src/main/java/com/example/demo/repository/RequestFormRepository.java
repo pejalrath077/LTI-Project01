@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Demo;
+import com.example.demo.entity.RequestForm;
 
 
 
 @Repository
-public interface DemoRepository extends JpaRepository<Demo, Long>{
+public interface RequestFormRepository extends JpaRepository<RequestForm, Long>{
 	
-	@Query(value ="select * from netflex",nativeQuery=true)
-	public Page<Demo> findDemo(Pageable pageable);
+	@Query(value ="select * from ifulfill",nativeQuery=true)
+	public Page<RequestForm> findIfulfills(Pageable pageable);
 
 }

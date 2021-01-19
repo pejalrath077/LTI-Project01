@@ -2,7 +2,7 @@ target/
 .project
 .settings/
 .classpath
-
+src/main/resources/application.properties
 
 # Compiled class file
 *.class

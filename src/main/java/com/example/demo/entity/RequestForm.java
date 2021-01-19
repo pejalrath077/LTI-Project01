@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="ifulfill")
+@Table(name="testdb")
 public class RequestForm {
 
 	@Id
@@ -18,7 +21,7 @@ public class RequestForm {
 	
 	private String system;
 	private String issues;
-	private String reportedDate;
+    private String reportedDate;
 	private String criticality;
 	private String pendingWith;
 	private String status;
@@ -49,8 +52,9 @@ public class RequestForm {
 	public String getReportedDate() {
 		return reportedDate;
 	}
-	public void setReportedDate(String reportedDate) {
-		this.reportedDate = reportedDate;
+	public void setReportedDate() {
+		LocalDateTime time = LocalDateTime.now();
+		this.reportedDate = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH).format(time) ;
 	}
 	public String getCriticality() {
 		return criticality;
@@ -80,13 +84,15 @@ public class RequestForm {
 		return targetDate;
 	}
 	public void setTargetDate(String targetDate) {
+	
 		this.targetDate = targetDate;
 	}
 	public String getClosureDate() {
 		return closureDate;
 	}
-	public void setClosureDate(String closureDate) {
-		this.closureDate = closureDate;
+	public void setClosureDate() {
+		LocalDateTime time = LocalDateTime.now();
+		this.closureDate = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH).format(time);
 	}
 	public String getRemark() {
 		return remark;

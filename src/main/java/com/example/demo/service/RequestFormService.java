@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.entity.RequestForm;
 import com.example.demo.repository.RequestFormRepository;
 
+
 @Service
 public class RequestFormService {
 	@Autowired
@@ -32,13 +33,13 @@ public class RequestFormService {
 		return repository.findIfulfills(pageable,keyword);
 	}
 
-	public RequestForm createReq(String system, String issues,String reportedDate, String criticality, String pending, String verifiedBy,
+	public RequestForm createReq(String system, String issues, String criticality, String pending, String verifiedBy,
 			String target, String remark, String reportedBy) {
 		
 		RequestForm req = new RequestForm();
 		req.setSystem(system);
 		req.setIssues(issues);
-		req.setReportedDate(reportedDate);
+		req.setReportedDate();
 		req.setCriticality(criticality);
 		req.setPendingWith(pending);
 		req.setStatus("Open");
@@ -50,10 +51,41 @@ public class RequestFormService {
 			
 	}
 	@Transactional
-	public String deleteBySrNo(int id) {
-		repository.deleteBySrNo(id);
+	public String deleteBySrNo(int srNo) {
+		repository.deleteBySrNo(srNo);
 		
-		return "Delete ID=" +id;
+		return "Delete ID=" +srNo;
 	}
+
+	public RequestForm updateStatus(int srNo, String status) {
+		
+		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+		req.setSrNo(srNo);
+		req.setStatus(status);
+		return repository.save(req);
+	}
+
+	public RequestForm assignTo(int srNo, String pending) {
+		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+		req.setSrNo(srNo);
+		req.setPendingWith(pending);
+		return repository.save(req);
+	}
+
+	public RequestForm updateRemark(int srNo, String remark) {
+		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+		req.setSrNo(srNo);
+		req.setRemark(remark);
+		return repository.save(req);
+	}
+
+	public RequestForm deleteRemak(int srNo) {
+		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+		req.setSrNo(srNo);
+		req.setRemark(null);
+		return repository.save(req);
+	}
+	
+	
 
 }

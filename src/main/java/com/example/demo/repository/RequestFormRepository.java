@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,9 +20,8 @@ public interface RequestFormRepository extends JpaRepository<RequestForm, Long>{
 			+ "OR LOWER(db.issues) LIKE LOWER(:keyword) OR LOWER(db.status) LIKE LOWER(:keyword)"
 			+ "OR LOWER(db.remark) LIKE LOWER(:keyword) ",nativeQuery=true)
 	public Page<RequestForm> findIfulfills(Pageable pageable,String keyword);
+	public void deleteBySrNo(int id);
+	public Optional<RequestForm> findBySrNo(int srNo);
 
 	
-
-	public void deleteBySrNo(int id);
-
 }

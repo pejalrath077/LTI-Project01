@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.RequestForm;
 import com.example.demo.service.RequestFormService;
+
 
 
 @RestController
@@ -26,8 +29,9 @@ public class RequestFormController {
 
 	@GetMapping("/getIfulfills")
 	public Page<RequestForm> getDemos(@RequestParam(value = "Pagenumber", required = false) Integer pagenumber,
-			@RequestParam(value = "Limit", required = false) Integer limit) {
-		return service.getIfulfills(pagenumber, limit);
+			@RequestParam(value = "Limit", required = false) Integer limit,
+			@RequestParam (value ="Keyword", required=false) String keyword) {
+		return service.getIfulfills(pagenumber, limit,keyword);
 	}
 
 	// PostMapping
@@ -45,6 +49,13 @@ public class RequestFormController {
 			
 			) {
 		return service.createReq(system,issues,reportedDate,criticality,pending,verifiedBy,target,remark,reportedBy);
+	}
+	
+	@DeleteMapping("/deleteIfulfill/{id}")
+	public String deleteBySrNo(@PathVariable int id)
+	{
+		return service.deleteBySrNo(id);
+		
 	}
 
 }

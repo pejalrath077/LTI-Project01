@@ -1,12 +1,14 @@
 package com.example.demo.service;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.RequestForm;
 import com.example.demo.repository.RequestFormRepository;
@@ -21,12 +23,13 @@ public class RequestFormService {
 		return "Hello World!!!";
 	}
 
-	public Page<RequestForm> getIfulfills(Integer pagenumber, Integer limit) {
+	public Page<RequestForm> getIfulfills(Integer pagenumber, Integer limit,String keyword) {
 		Pageable pageable=Pageable.unpaged();
 		pagenumber =((null==pagenumber) ? 0:pagenumber-1);
 		limit=((null==limit)?100000:limit);
 		pageable=PageRequest.of(pagenumber, limit, Sort.by("sr_no").descending());
-		return repository.findIfulfills(pageable);
+		keyword=(StringUtils.isBlank(keyword)?"%%":"%"+keyword+"%");
+		return repository.findIfulfills(pageable,keyword);
 	}
 
 	public RequestForm createReq(String system, String issues,String reportedDate, String criticality, String pending, String verifiedBy,
@@ -45,6 +48,12 @@ public class RequestFormService {
 		req.setReportedBy(reportedBy);
 		return repository.save(req);
 			
+	}
+	@Transactional
+	public String deleteBySrNo(int id) {
+		repository.deleteBySrNo(id);
+		
+		return "Delete ID=" +id;
 	}
 
 }

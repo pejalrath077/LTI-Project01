@@ -1,0 +1,22 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch Restdemo1Application",
+      "request": "launch",
+      "vmArgs": "-Djdk.tls.client.protocols=TLSv1.2",
+      "mainClass": "com.example.demo.Restdemo1Application",
+      "projectName": "LTI-Project01"
+    }
+  ]
+}

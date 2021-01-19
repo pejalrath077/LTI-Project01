@@ -14,7 +14,13 @@ import com.example.demo.entity.RequestForm;
 @Repository
 public interface RequestFormRepository extends JpaRepository<RequestForm, Long>{
 	
-	@Query(value ="select * from ifulfill",nativeQuery=true)
-	public Page<RequestForm> findIfulfills(Pageable pageable);
+	@Query(value ="select * from ifulfill db where LOWER(db.system) LIKE LOWER(:keyword) OR LOWER(db.criticality) LIKE LOWER(:keyword)"
+			+ "OR LOWER(db.issues) LIKE LOWER(:keyword) OR LOWER(db.status) LIKE LOWER(:keyword)"
+			+ "OR LOWER(db.remark) LIKE LOWER(:keyword) ",nativeQuery=true)
+	public Page<RequestForm> findIfulfills(Pageable pageable,String keyword);
+
+	
+
+	public void deleteBySrNo(int id);
 
 }

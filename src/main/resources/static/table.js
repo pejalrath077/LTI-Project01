@@ -2,6 +2,11 @@
 window.onload = function() {
     buildTable(response);
 }
+let realData = [];
+$.getJSON('http://localhost:8080/getRequestFormData').then(data => {
+    realData = data;
+    console.log(`Real Data is: ${realData}`);
+});
 
 function buildTable(arr) {
 
@@ -29,6 +34,7 @@ function buildTable(arr) {
         tr.innerHTML = row;
         document.getElementById('table-body').appendChild(tr);
     }
+    console.log("Hello Anthony");
 
     // show the table
     // document.getElementById('own-reimbursements').classList.remove('d-none');

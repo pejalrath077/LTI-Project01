@@ -73,6 +73,12 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(requestFormList);
 	}
 
+	@RequestMapping("/getRequestFormData")
+	public List<RequestForm> getAllRequestFormsData() {
+		requestFormList = requestFormRepository.findAll();
+		return requestFormList;
+	}
+
 	@DeleteMapping("/delete={id}")
 	public void deleteRequestForm(@PathVariable("id") String id) {
 		this.requestFormRepository.deleteById(id);

@@ -2,8 +2,13 @@ target/
 .project
 .settings/
 .classpath
+<<<<<<< HEAD
+
+src/main/resources/application.properties
+=======
 src/main/resources/application.properties
 
+>>>>>>> 50c420b6c43bb30039a30f8a10909e11c2885d07
 # Compiled class file
 *.class
 

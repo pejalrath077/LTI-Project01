@@ -29,14 +29,15 @@ public class RequestFormService {
 		pagenumber =((null==pagenumber) ? 0:pagenumber-1);
 		limit=((null==limit)?100000:limit);
 		pageable=PageRequest.of(pagenumber, limit, Sort.by("sr_no").descending());
-		keyword=(StringUtils.isBlank(keyword)?"%%":"%"+keyword+"%");
-		return repository.findIfulfills(pageable,keyword);
+		keyword=(StringUtils.isBlank(keyword)?"":keyword);
+		return repository.findBySystemLike(pageable,keyword);
 	}
 
-	public RequestForm createReq(String system, String issues, String criticality, String pending, String verifiedBy,
+	public RequestForm createReq(int srNo,String system, String issues, String criticality, String pending, String verifiedBy,
 			String target, String remark, String reportedBy) {
 		
 		RequestForm req = new RequestForm();
+		req.setSrNo(srNo);
 		req.setSystem(system);
 		req.setIssues(issues);
 		req.setReportedDate();
@@ -54,37 +55,37 @@ public class RequestFormService {
 	public String deleteBySrNo(int srNo) {
 		repository.deleteBySrNo(srNo);
 		
-		return "Delete ID=" +srNo;
+		return "Delete SrNo=" +srNo;
 	}
 
-	public RequestForm updateStatus(int srNo, String status) {
-		
-		RequestForm req=repository.findBySrNo(srNo).orElse(null);
-		req.setSrNo(srNo);
-		req.setStatus(status);
-		return repository.save(req);
-	}
-
-	public RequestForm assignTo(int srNo, String pending) {
-		RequestForm req=repository.findBySrNo(srNo).orElse(null);
-		req.setSrNo(srNo);
-		req.setPendingWith(pending);
-		return repository.save(req);
-	}
-
-	public RequestForm updateRemark(int srNo, String remark) {
-		RequestForm req=repository.findBySrNo(srNo).orElse(null);
-		req.setSrNo(srNo);
-		req.setRemark(remark);
-		return repository.save(req);
-	}
-
-	public RequestForm deleteRemak(int srNo) {
-		RequestForm req=repository.findBySrNo(srNo).orElse(null);
-		req.setSrNo(srNo);
-		req.setRemark(null);
-		return repository.save(req);
-	}
+//	public RequestForm updateStatus(int srNo, String status) {
+//		
+//		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+//		req.setSrNo(srNo);
+//		req.setStatus(status);
+//		return repository.save(req);
+//	}
+//
+//	public RequestForm assignTo(int srNo, String pending) {
+//		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+//		req.setSrNo(srNo);
+//		req.setPendingWith(pending);
+//		return repository.save(req);
+//	}
+//
+//	public RequestForm updateRemark(int srNo, String remark) {
+//		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+//		req.setSrNo(srNo);
+//		req.setRemark(remark);
+//		return repository.save(req);
+//	}
+//
+//	public RequestForm deleteRemak(int srNo) {
+//		RequestForm req=repository.findBySrNo(srNo).orElse(null);
+//		req.setSrNo(srNo);
+//		req.setRemark(null);
+//		return repository.save(req);
+//	}
 	
 	
 

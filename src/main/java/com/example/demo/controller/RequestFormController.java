@@ -39,6 +39,7 @@ public class RequestFormController {
 	// PostMapping
 	@PostMapping("/createIfulfill")
 	public RequestForm createReq(
+			@RequestParam(value = "SrNo", required = true) int srNo,
 			@RequestParam(value = "System", required = false) String system,
 			@RequestParam(value = "Issues", required = false) String issues,
 			@RequestParam(value = "Criticality", required = false) String criticality,
@@ -49,7 +50,7 @@ public class RequestFormController {
 			@RequestParam(value = "Reported By", required = false) String reportedBy
 			
 			) {
-		return service.createReq(system,issues,criticality,pending,verifiedBy,target,remark,reportedBy);
+		return service.createReq(srNo,system,issues,criticality,pending,verifiedBy,target,remark,reportedBy);
 	}
 	
 	@DeleteMapping("/deleteIfulfill/{srNo}")
@@ -58,32 +59,32 @@ public class RequestFormController {
 		return service.deleteBySrNo(srNo);
 		
 	}
-	@DeleteMapping("/deleteRemark/{srNo}")
-	public RequestForm deleteRemak(@PathVariable int srNo)
-	{
-		return service.deleteRemak(srNo);
-	}
-	
-	@PutMapping("/updateStatus")
-	public RequestForm updateStatus(@RequestParam(value = "SrNo", required = true) int srNo,
-			@RequestParam(value = "Status", required = true) String status)
-	{
-		return service.updateStatus(srNo,status);
-	}
-	
-	@PutMapping("/assignTo")
-	public RequestForm assignTo(@RequestParam(value = "SrNo", required = true) int srNo,
-			@RequestParam(value = "Pending With", required = true) String pending)
-	{
-		return service.assignTo(srNo,pending);
-	}
-	
-	@PutMapping("/updateRemark")
-	public RequestForm updateRemark(
-			@RequestParam(value = "SrNo", required = true) int srNo,
-			@RequestParam(value = "Remark", required = false) String remark)
-	{
-		return service.updateRemark(srNo,remark);
-	}
+//	@DeleteMapping("/deleteRemark/{srNo}")
+//	public RequestForm deleteRemak(@PathVariable int srNo)
+//	{
+//		return service.deleteRemak(srNo);
+//	}
+//	
+//	@PutMapping("/updateStatus")
+//	public RequestForm updateStatus(@RequestParam(value = "SrNo", required = true) int srNo,
+//			@RequestParam(value = "Status", required = true) String status)
+//	{
+//		return service.updateStatus(srNo,status);
+//	}
+//	
+//	@PutMapping("/assignTo")
+//	public RequestForm assignTo(@RequestParam(value = "SrNo", required = true) int srNo,
+//			@RequestParam(value = "Pending With", required = true) String pending)
+//	{
+//		return service.assignTo(srNo,pending);
+//	}
+//	
+//	@PutMapping("/updateRemark")
+//	public RequestForm updateRemark(
+//			@RequestParam(value = "SrNo", required = true) int srNo,
+//			@RequestParam(value = "Remark", required = false) String remark)
+//	{
+//		return service.updateRemark(srNo,remark);
+//	}
 
 }

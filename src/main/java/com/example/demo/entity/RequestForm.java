@@ -10,9 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="testdb")
+import lombok.Data;
+
+
+//@Entity
+//@Table(name="testdb")
+@Data
+@Document(collection = "Ifull")
 public class RequestForm {
 
 	@Id

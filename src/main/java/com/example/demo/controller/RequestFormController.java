@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,7 @@ public class RequestFormController {
 	private RequestFormRepository requestFormRepository;
 
 	@ApiIgnore
+	@CrossOrigin
 	@RequestMapping(value = "/")
 	public void redirect(HttpServletResponse response) throws IOException {
 		response.sendRedirect("/swagger-ui.html");
@@ -54,6 +56,7 @@ public class RequestFormController {
 	// return service.getHelloWorld();
 	// }
 
+	@CrossOrigin
 	@PostMapping("/createRequestForm")
 	public ResponseEntity<RequestForm> addRequestForm(@RequestBody RequestForm form) {
 		requestForm = requestFormRepository.save(form);
@@ -64,6 +67,7 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 
+	@CrossOrigin
 	@GetMapping("/getRequestForm")
 	public ResponseEntity<List<RequestForm>> getAllRequestForms() {
 		requestFormList = requestFormRepository.findAll();
@@ -73,6 +77,14 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(requestFormList);
 	}
 
+	@CrossOrigin
+	@RequestMapping("/getRequestFormData")
+	public List<RequestForm> getAllRequestFormsData() {
+		requestFormList = requestFormRepository.findAll();
+		return requestFormList;
+	}
+
+	@CrossOrigin
 	@DeleteMapping("/delete={id}")
 	public void deleteRequestForm(@PathVariable("id") String id) {
 		this.requestFormRepository.deleteById(id);

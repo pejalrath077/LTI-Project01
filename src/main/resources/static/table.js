@@ -4,7 +4,7 @@ window.onload = function() {
 }
 
 let realData = [];
-$.getJSON('https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
+$.getJSON('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
     realData = data;
     console.log(`Real Data is: ${realData}`);
     buildTable(realData);

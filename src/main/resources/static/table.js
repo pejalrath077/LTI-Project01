@@ -2,9 +2,9 @@
 window.onload = function() {
     
 }
-
+console.log("Hello Anthony");
 let realData = [];
-$.getJSON('https://fast-depths-93359.herokuapp.com/getRequestFormData').then(data => {
+$.getJSON('https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
     realData = data;
     console.log(`Real Data is: ${realData}`);
     buildTable(realData);
@@ -36,7 +36,6 @@ function buildTable(arr) {
         tr.innerHTML = row;
         document.getElementById('table-body').appendChild(tr);
     }
-    console.log("Hello Anthony");
 
     // show the table
     // document.getElementById('own-reimbursements').classList.remove('d-none');

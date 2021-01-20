@@ -4,7 +4,7 @@ window.onload = function() {
 }
 
 let realData = [];
-$.getJSON('https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
+$.getJSON('https://fast-depths-93359.herokuapp.com/getRequestFormData').then(data => {
     realData = data;
     console.log(`Real Data is: ${realData}`);
     buildTable(realData);

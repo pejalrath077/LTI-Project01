@@ -1,11 +1,13 @@
 
 window.onload = function() {
-    buildTable(response);
+    
 }
+
 let realData = [];
-$.getJSON('http://localhost:8080/getRequestFormData').then(data => {
+$.getJSON('https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
     realData = data;
     console.log(`Real Data is: ${realData}`);
+    buildTable(realData);
 });
 
 function buildTable(arr) {
@@ -14,17 +16,17 @@ function buildTable(arr) {
 
         // create a row of data
         let row = `
-            <th scope="row">${arr[i].srNo}</th>
+            <th scope="row">${arr[i].id}</th>
             <td>${arr[i].system}</td>
-            <td>${arr[i].issue}</td>
+            <td>${arr[i].issues}</td>
             <td>${arr[i].reportedDate}</td>
             <td>${arr[i].criticality}</td>
             <td>${arr[i].pendingWith}</td>
             <td>${arr[i].status}</td>
-            <td>${arr[i].verifier}</td>
+            <td>${arr[i].verifiedBy}</td>
             <td>${arr[i].targetDate}</td>
             <td>${arr[i].closureDate}</td>
-            <td>${arr[i].remarks}</td>
+            <td>${arr[i].remark}</td>
             <td>${arr[i].reportedBy}</td>
         `
 

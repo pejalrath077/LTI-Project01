@@ -10,7 +10,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-	<title>iFulfill</title>
+	<title>Issue Tracker</title>
 
 	<!-- dark mode -->
 	<style>
@@ -27,7 +27,7 @@
 		<div class="row">
 			<div class="col-md-6 offset-3">
 				<div class="text-center">
-					<h1>iFulfill Tracker</h1>
+					<h1>Issue Tracker</h1>
 					<hr>
 				</div>
 			</div>
@@ -38,6 +38,7 @@
 				<table id="table" class="table table-dark table-striped table-bordered">
 					<thead>
 						<tr>
+							<!--
 							<th scope="col" style="width: 6%">SR No</th>
 							<th scope="col" style="width: 5%">System</th>
 							<th scope="col" style="width: 22%">Issue</th>
@@ -50,12 +51,75 @@
 							<th scope="col" style="width: 10%">Closure Date</th>
 							<th scope="col" style="width: 5%">Remarks</th>
 							<th scope="col" style="width: 10%">Reported By</th>
+							-->
+							<th scope="col">SR No</th>
+							<th scope="col">System</th>
+							<th scope="col">Issue</th>
+							<th scope="col">Reported Date</th>
+							<th scope="col">Criticality</th>
+							<th scope="col">Pending with</th>
+							<th scope="col">Status</th>
+							<th scope="col">Verifier</th>
+							<th scope="col">Target Date</th>
+							<th scope="col">Closure Date</th>
+							<th scope="col">Remarks</th>
+							<th scope="col">Reported By</th>
+							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody id="table-body"></tbody>
 				</table>
 			</div>
 		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6 offset-3">
+				<div class="text-center">
+					<h2>Track New Issue</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xxl">
+				<table id="table-2" class="table table-dark table-striped table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">SR No</th>
+							<th scope="col">System</th>
+							<th scope="col">Issue</th>
+							<th scope="col">Reported Date</th>
+							<th scope="col">Criticality</th>
+							<th scope="col">Pending with</th>
+							<th scope="col">Status</th>
+							<th scope="col">Verifier</th>
+							<th scope="col">Target Date</th>
+							<th scope="col">Closure Date</th>
+							<th scope="col">Remarks</th>
+							<th scope="col">Reported By</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody id="table-create">
+						<tr>
+							<td></td>
+							<td><textarea id="system" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="issues" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="reportedDate" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="criticality" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="pendingWith" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="status" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="verifiedBy" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="targetDate" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="closureDate" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="remark" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><textarea id="reportedBy" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<td><button id="button-create" type="button" class="btn btn-success" onclick="createIssue()">create</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br><br><br>
 	</div>
 
 	<!-- Optional JavaScript; choose one of the two! -->
@@ -74,6 +138,7 @@
 
 	<script src="test.js"></script>
 	<script src="table.js"></script>
+	<script src="create.js"></script>
 
 </body>
 

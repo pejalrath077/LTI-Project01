@@ -1,20 +1,12 @@
 
-window.onload = function() {
-    
+window.onload = function () {
+    fetch('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/getRequestForm')
+        .then(response => response.json())
+        .then(json => buildTable(json))
 }
 
-let realData = [];
-$.getJSON('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
-    realData = data;
-    console.log(`Real Data is: ${realData}`);
-    buildTable(realData);
-});
-
-function buildTable(arr) {
-
-    for(let i = 0; i < arr.length; i++) {
-
-        // create a row of data
+function buildTable (arr) {
+    for (let i = 0; i < arr.length; i++) {
         let row = `
             <th scope="row">${arr[i].id}</th>
             <td>${arr[i].system}</td>
@@ -28,16 +20,14 @@ function buildTable(arr) {
             <td>${arr[i].closureDate}</td>
             <td>${arr[i].remark}</td>
             <td>${arr[i].reportedBy}</td>
+            <td><button id="button-${arr[i].id}" type="button" class="btn btn-warning">update</button></td>
         `
-
-        // add the row to the table
         let tr = document.createElement('tr');
         tr.setAttribute('id', i);
         tr.innerHTML = row;
         document.getElementById('table-body').appendChild(tr);
     }
-    console.log("Hello Anthony");
-
-    // show the table
-    // document.getElementById('own-reimbursements').classList.remove('d-none');
+    // how to add & remove classes:
+    // document.getElementById('example-add').classList.add('class-1');
+    // document.getElementById('example-remove').classList.remove('class-2');
 }

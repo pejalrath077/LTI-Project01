@@ -1,6 +1,7 @@
 
 function createIssue () {
 
+    const id = document.getElementById('srNo').value
     const system = document.getElementById('system').value
     const issues = document.getElementById('issues').value
     const reportedDate = document.getElementById('reportedDate').value
@@ -14,7 +15,7 @@ function createIssue () {
     const reportedBy = document.getElementById('reportedBy').value
 
     const json = {
-        id: 0,
+        id: id,
         system: system,
         issues: issues,
         reportedDate: reportedDate,

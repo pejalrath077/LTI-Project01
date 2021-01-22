@@ -9,4 +9,9 @@ public class HelloController {
   public String index() {
     return "index";
   }
+
+  @RequestMapping("/technologies")
+  public String technologies() {
+    return "technologies";
+  }
 }

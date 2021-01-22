@@ -61,8 +61,7 @@ public class RequestFormController {
 			@RequestParam(value = "Verified By", required = false) String verifiedBy,
 			@RequestParam(value = "Target Date", required = false) String target,
 			@RequestParam(value = "Remark", required = false) String remark,
-			@RequestParam(value = "Reported By", required = false) String reportedBy) 
-	{
+			@RequestParam(value = "Reported By", required = false) String reportedBy) {
 		RequestForm req = new RequestForm();
 		req.setId(id);
 		req.setSystem(system);
@@ -77,6 +76,17 @@ public class RequestFormController {
 		req.setReportedBy(reportedBy);
 		requestForm = requestFormRepository.save(req);
 		log.info("Saved form=" + requestForm.toString());
+		if (requestForm != null)
+			return ResponseEntity.status(HttpStatus.CREATED).body(requestForm);
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	}
+
+	@CrossOrigin
+	@PostMapping("/createRequestFormBrowser")
+	public ResponseEntity<RequestForm> addRequestFormBrowser(@RequestBody RequestForm form) {
+		requestForm = requestFormRepository.save(form);
+		log.info("Saved quote=" + requestForm.toString());
 		if (requestForm != null)
 			return ResponseEntity.status(HttpStatus.CREATED).body(requestForm);
 
@@ -105,6 +115,5 @@ public class RequestFormController {
 	public void deleteRequestForm(@PathVariable("id") String id) {
 		this.requestFormRepository.deleteById(id);
 	}
-	
 
 }

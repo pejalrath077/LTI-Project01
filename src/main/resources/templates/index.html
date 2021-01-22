@@ -18,10 +18,38 @@
 			background-color: black;
 			color: white;
 		}
+
+		.sidenav {
+			height: 100%;
+			width: 160px;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+		}
+
+		.sidenav a {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+		}
+
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
 	</style>
 </head>
 
 <body>
+	<div class="sidenav">
+		<a href="/index">Issues Tracker</a>
+		<a href="/technologies">Technology Stack</a>
+	</div>
 	<div class="container">
 		<br>
 		<div class="row">
@@ -84,7 +112,7 @@
 				<table id="table-2" class="table table-dark table-striped table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">SR No</th>
+							<!-- <th scope="col">SR No</th> -->
 							<th scope="col">System</th>
 							<th scope="col">Issue</th>
 							<th scope="col">Reported Date</th>
@@ -101,7 +129,7 @@
 					</thead>
 					<tbody id="table-create">
 						<tr>
-							<td><textarea id="srNo" type="text" class="form-control bg-dark text-light"></textarea></td>
+							<!-- <td><textarea id="srNo" type="text" class="form-control bg-dark text-light"></textarea></td> -->
 							<td><textarea id="system" type="text" class="form-control bg-dark text-light"></textarea></td>
 							<td><textarea id="issues" type="text" class="form-control bg-dark text-light"></textarea></td>
 							<td><textarea id="reportedDate" type="text" class="form-control bg-dark text-light"></textarea></td>
@@ -113,7 +141,8 @@
 							<td><textarea id="closureDate" type="text" class="form-control bg-dark text-light"></textarea></td>
 							<td><textarea id="remark" type="text" class="form-control bg-dark text-light"></textarea></td>
 							<td><textarea id="reportedBy" type="text" class="form-control bg-dark text-light"></textarea></td>
-							<td><button id="button-create" type="button" class="btn btn-success" onclick="createIssue()">create</button></td>
+							<td><button id="button-create" type="button" class="btn btn-success"
+									onclick="createIssue()">create</button></td>
 						</tr>
 					</tbody>
 				</table>

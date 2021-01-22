@@ -28,6 +28,7 @@ public class Restdemo1Application {
 		SpringApplication.run(Restdemo1Application.class, args);
 	}
 
+<<<<<<< HEAD
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
@@ -73,18 +74,36 @@ public class Restdemo1Application {
 	// System.out.println("---------------------------------");
 	// for (RequestForm requestform : repository.findAll()) {
 	// System.out.println(requestform);
+=======
+	// @Bean
+	// public Docket api() {
+	// return new Docket(DocumentationType.SWAGGER_2).select()
+	// .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any()).build()
+	// .apiInfo(apiInfo()).useDefaultResponseMessages(false);
+>>>>>>> main
+	// }
+	//
+	// @Bean
+	// public ApiInfo apiInfo() {
+	// final ApiInfoBuilder builder = new ApiInfoBuilder();
+	// builder.title("iFulfill Api").version("1.0").license("(C) Copyright LTI")
+	// .description("List of all the APIs of LTI iFulfill through Swagger UI");
+	// return builder.build();
 	// }
 
-	// System.out.println();
-
-	// System.out.println("RequestForms found with findBySystem('Windows'):");
-	// System.out.println("------------------------------------------------");
-	// System.out.println(repository.findBySystem("Windows"));
-
-	// System.out.println("RequestForms found with findByStatus('Open')");
-	// System.out.println("--------------------------------------------");
-	// for (RequestForm requestform : repository.findByStatus("Open")) {
-	// System.out.println(requestform);
-	// }
+	// @Bean
+	// CorsConfigurationSource corsConfigurationSource() {
+	// CorsConfiguration configuration = new CorsConfiguration();
+	// configuration.setAllowedOrigins(Arrays.asList("https://boot-hheroku.herokuapp.com"));
+	// configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE",
+	// "HEAD", "OPTIONS"));
+	// configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Headers",
+	// "Access-Control-Allow-Origin",
+	// "Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin",
+	// "Cache-Control", "Content-Type"));
+	// final UrlBasedCorsConfigurationSource source = new
+	// UrlBasedCorsConfigurationSource();
+	// source.registerCorsConfiguration("/**", configuration);
+	// return source;
 	// }
 }

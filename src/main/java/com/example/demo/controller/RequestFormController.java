@@ -28,7 +28,7 @@ import com.example.demo.repository.RequestFormRepository;
 //import com.example.demo.service.RequestFormService;
 
 @RestController
-// @RequestMapping("/api")
+
 public class RequestFormController {
 	private static final Logger log = LoggerFactory.getLogger(RequestForm.class);
 
@@ -51,14 +51,38 @@ public class RequestFormController {
 		response.sendRedirect("/swagger-ui.html");
 	}
 
+<<<<<<< HEAD
 	// @GetMapping("/getDemoDetails")
 	// public String getDemoDetails() {
 	// return service.getHelloWorld();
 	// }
 
+=======
+	@CrossOrigin
+>>>>>>> main
 	@PostMapping("/createRequestForm")
-	public ResponseEntity<RequestForm> addRequestForm(@RequestBody RequestForm form) {
-		requestForm = requestFormRepository.save(form);
+	public ResponseEntity<RequestForm> addRequestForm(@RequestParam(value = "Id", required = true) int id,
+			@RequestParam(value = "System", required = false) String system,
+			@RequestParam(value = "Issues", required = false) String issues,
+			@RequestParam(value = "Criticality", required = false) String criticality,
+			@RequestParam(value = "Pending With", required = false) String pending,
+			@RequestParam(value = "Verified By", required = false) String verifiedBy,
+			@RequestParam(value = "Target Date", required = false) String target,
+			@RequestParam(value = "Remark", required = false) String remark,
+			@RequestParam(value = "Reported By", required = false) String reportedBy) {
+		RequestForm req = new RequestForm();
+		req.setId(id);
+		req.setSystem(system);
+		req.setIssues(issues);
+		req.setReportedDate();
+		req.setCriticality(criticality);
+		req.setPendingWith(pending);
+		req.setStatus("Open");
+		req.setVerifiedBy(verifiedBy);
+		req.setTargetDate(target);
+		req.setRemark(remark);
+		req.setReportedBy(reportedBy);
+		requestForm = requestFormRepository.save(req);
 		log.info("Saved form=" + requestForm.toString());
 		if (requestForm != null)
 			return ResponseEntity.status(HttpStatus.CREATED).body(requestForm);
@@ -66,6 +90,21 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 
+<<<<<<< HEAD
+=======
+	@CrossOrigin
+	@PostMapping("/createRequestFormBrowser")
+	public ResponseEntity<RequestForm> addRequestFormBrowser(@RequestBody RequestForm form) {
+		requestForm = requestFormRepository.save(form);
+		log.info("Saved quote=" + requestForm.toString());
+		if (requestForm != null)
+			return ResponseEntity.status(HttpStatus.CREATED).body(requestForm);
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	}
+
+	@CrossOrigin
+>>>>>>> main
 	@GetMapping("/getRequestForm")
 	public ResponseEntity<List<RequestForm>> getAllRequestForms() {
 		requestFormList = requestFormRepository.findAll();
@@ -75,7 +114,12 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(requestFormList);
 	}
 
+<<<<<<< HEAD
 	@RequestMapping("/getRequestFormData")
+=======
+	@CrossOrigin
+	@GetMapping("/getRequestFormData")
+>>>>>>> main
 	public List<RequestForm> getAllRequestFormsData() {
 		requestFormList = requestFormRepository.findAll();
 		return requestFormList;
@@ -85,30 +129,5 @@ public class RequestFormController {
 	public void deleteRequestForm(@PathVariable("id") String id) {
 		this.requestFormRepository.deleteById(id);
 	}
-	// @GetMapping("/getIfulfills")
-	// public Page<RequestForm> getDemos(@RequestParam(value = "Pagenumber",
-	// required = false) Integer pagenumber,
-	// @RequestParam(value = "Limit", required = false) Integer limit) {
-	// return service.getIfulfills(pagenumber, limit);
-	// }
-
-	// PostMapping
-	// @PostMapping("/createIfulfill")
-	// public RequestForm createReq(@RequestParam(value = "System", required =
-	// false) String system,
-	// @RequestParam(value = "Issues", required = false) String issues,
-	// @RequestParam(value = "Reported Date", required = false) String reportedDate,
-	// @RequestParam(value = "Criticality", required = false) String criticality,
-	// @RequestParam(value = "Pending With", required = false) String pending,
-	// @RequestParam(value = "Verified By", required = false) String verifiedBy,
-	// @RequestParam(value = "Target Date", required = false) String target,
-	// @RequestParam(value = "Remark", required = false) String remark,
-	// @RequestParam(value = "Reported By", required = false) String reportedBy
-
-	// ) {
-	// return service.createReq(system, issues, reportedDate, criticality, pending,
-	// verifiedBy, target, remark,
-	// reportedBy);
-	// }
 
 }

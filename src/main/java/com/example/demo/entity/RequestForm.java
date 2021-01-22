@@ -1,5 +1,9 @@
 package com.example.demo.entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Repository;
@@ -41,11 +45,11 @@ public class RequestForm {
 		this.reportedBy = reportedBy;
 	}
 
-	public int getid() {
+	public int getId() {
 		return id;
 	}
 
-	public void setid(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -64,13 +68,12 @@ public class RequestForm {
 	public void setIssues(String issues) {
 		this.issues = issues;
 	}
-
 	public String getReportedDate() {
 		return reportedDate;
 	}
-
-	public void setReportedDate(String reportedDate) {
-		this.reportedDate = reportedDate;
+	public void setReportedDate() {
+		LocalDateTime time = LocalDateTime.now();
+		this.reportedDate = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH).format(time) ;
 	}
 
 	public String getCriticality() {
@@ -113,12 +116,9 @@ public class RequestForm {
 		this.targetDate = targetDate;
 	}
 
-	public String getClosureDate() {
-		return closureDate;
-	}
-
-	public void setClosureDate(String closureDate) {
-		this.closureDate = closureDate;
+	public void setClosureDate() {
+		LocalDateTime time = LocalDateTime.now();
+		this.closureDate = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH).format(time);
 	}
 
 	public String getRemark() {

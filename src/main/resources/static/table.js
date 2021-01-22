@@ -1,7 +1,16 @@
-
-window.onload = function() {
-    
+let count = 0;
+window.onload = function () {
+    fetch('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/getRequestForm')
+        .then(response => response.json())
+        .then(json => {
+            buildTable(json);
+            console.log(json);
+            console.log(typeof json.length);
+            count = json.length;
+            console.log(count);
+        });
 }
+<<<<<<< HEAD
 console.log("Hello Anthony");
 let realData = [];
 $.getJSON('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
@@ -9,12 +18,55 @@ $.getJSON('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.
     console.log(`Real Data is: ${realData}`);
     buildTable(realData);
 });
+=======
 
-function buildTable(arr) {
+function updateIssue(id) {
+    console.log("update button clicked " + id);
+}
+function createIssue() {
+>>>>>>> main
 
-    for(let i = 0; i < arr.length; i++) {
+    const id = count;
+    const system = document.getElementById('system').value;
+    const issues = document.getElementById('issues').value;
+    const reportedDate = document.getElementById('reportedDate').value;
+    const criticality = document.getElementById('criticality').value;
+    const pendingWith = document.getElementById('pendingWith').value;
+    const status = document.getElementById('status').value;
+    const verifiedBy = document.getElementById('verifiedBy').value;
+    const targetDate = document.getElementById('targetDate').value;
+    const closureDate = document.getElementById('closureDate').value;
+    const remark = document.getElementById('remark').value;
+    const reportedBy = document.getElementById('reportedBy').value;
 
-        // create a row of data
+    const json = {
+        id: id,
+        system: system,
+        issues: issues,
+        reportedDate: reportedDate,
+        criticality: criticality,
+        pendingWith: pendingWith,
+        status: status,
+        verifiedBy: verifiedBy,
+        targetDate: targetDate,
+        closureDate: closureDate,
+        remark: remark,
+        reportedBy: reportedBy,
+    }
+
+    fetch('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/createRequestForm', {
+        method: 'post',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(json)
+    })
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            location.reload();
+        })
+}
+function buildTable (arr) {
+    for (let i = 0; i < arr.length; i++) {
         let row = `
             <th scope="row">${arr[i].id}</th>
             <td>${arr[i].system}</td>
@@ -28,15 +80,21 @@ function buildTable(arr) {
             <td>${arr[i].closureDate}</td>
             <td>${arr[i].remark}</td>
             <td>${arr[i].reportedBy}</td>
+            <td><button id="button-${arr[i].id}" onclick="updateIssue(${arr[i].id})" button" class="btn btn-warning">update</button></td>
         `
-
-        // add the row to the table
         let tr = document.createElement('tr');
         tr.setAttribute('id', i);
         tr.innerHTML = row;
         document.getElementById('table-body').appendChild(tr);
     }
+<<<<<<< HEAD
 
     // show the table
     // document.getElementById('own-reimbursements').classList.remove('d-none');
 }
+=======
+    // how to add & remove classes:
+    // document.getElementById('example-add').classList.add('class-1');
+    // document.getElementById('example-remove').classList.remove('class-2');
+}
+>>>>>>> main

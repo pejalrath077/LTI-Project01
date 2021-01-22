@@ -10,21 +10,11 @@ window.onload = function () {
             console.log(count);
         });
 }
-<<<<<<< HEAD
-console.log("Hello Anthony");
-let realData = [];
-$.getJSON('https://cors-anywhere.herokuapp.com/https://lti-project-01.herokuapp.com/getRequestForm').then(data => {
-    realData = data;
-    console.log(`Real Data is: ${realData}`);
-    buildTable(realData);
-});
-=======
 
 function updateIssue(id) {
     console.log("update button clicked " + id);
 }
 function createIssue() {
->>>>>>> main
 
     const id = count;
     const system = document.getElementById('system').value;
@@ -87,14 +77,7 @@ function buildTable (arr) {
         tr.innerHTML = row;
         document.getElementById('table-body').appendChild(tr);
     }
-<<<<<<< HEAD
-
-    // show the table
-    // document.getElementById('own-reimbursements').classList.remove('d-none');
-}
-=======
     // how to add & remove classes:
     // document.getElementById('example-add').classList.add('class-1');
     // document.getElementById('example-remove').classList.remove('class-2');
 }
->>>>>>> main

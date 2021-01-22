@@ -51,15 +51,7 @@ public class RequestFormController {
 		response.sendRedirect("/swagger-ui.html");
 	}
 
-<<<<<<< HEAD
-	// @GetMapping("/getDemoDetails")
-	// public String getDemoDetails() {
-	// return service.getHelloWorld();
-	// }
-
-=======
 	@CrossOrigin
->>>>>>> main
 	@PostMapping("/createRequestForm")
 	public ResponseEntity<RequestForm> addRequestForm(@RequestParam(value = "Id", required = true) int id,
 			@RequestParam(value = "System", required = false) String system,
@@ -90,8 +82,6 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 
-<<<<<<< HEAD
-=======
 	@CrossOrigin
 	@PostMapping("/createRequestFormBrowser")
 	public ResponseEntity<RequestForm> addRequestFormBrowser(@RequestBody RequestForm form) {
@@ -104,7 +94,6 @@ public class RequestFormController {
 	}
 
 	@CrossOrigin
->>>>>>> main
 	@GetMapping("/getRequestForm")
 	public ResponseEntity<List<RequestForm>> getAllRequestForms() {
 		requestFormList = requestFormRepository.findAll();
@@ -114,12 +103,8 @@ public class RequestFormController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(requestFormList);
 	}
 
-<<<<<<< HEAD
-	@RequestMapping("/getRequestFormData")
-=======
 	@CrossOrigin
 	@GetMapping("/getRequestFormData")
->>>>>>> main
 	public List<RequestForm> getAllRequestFormsData() {
 		requestFormList = requestFormRepository.findAll();
 		return requestFormList;
